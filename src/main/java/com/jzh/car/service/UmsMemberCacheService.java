@@ -3,21 +3,21 @@ package com.jzh.car.service;
 import com.jzh.car.model.UmsMember;
 
 /**
- * 会员信息缓存业务类
+ * 用户信息缓存业务类
  */
 public interface UmsMemberCacheService {
     /**
-     * 删除会员用户缓存
+     * 删除用户用户缓存
      */
     void delMember(Long memberId);
 
     /**
-     * 获取会员用户缓存
+     * 获取用户用户缓存
      */
     UmsMember getMember(String username);
 
     /**
-     * 设置会员用户缓存
+     * 设置用户用户缓存
      */
     void setMember(UmsMember member);
 

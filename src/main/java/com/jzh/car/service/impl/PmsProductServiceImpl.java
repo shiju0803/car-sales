@@ -1,14 +1,15 @@
 package com.jzh.car.service.impl;
 
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
-import com.jzh.car.mapper.CmsPrefrenceAreaProductRelationMapper;
 import com.jzh.car.dto.PmsProductParam;
 import com.jzh.car.dto.PmsProductQueryParam;
 import com.jzh.car.dto.PmsProductResult;
-import com.jzh.car.mapper.*;
-import com.jzh.car.model.*;
+import com.jzh.car.mapper.PmsProductAttributeValueMapper;
+import com.jzh.car.mapper.PmsProductMapper;
+import com.jzh.car.model.PmsProduct;
+import com.jzh.car.model.PmsProductAttributeValueExample;
+import com.jzh.car.model.PmsProductExample;
 import com.jzh.car.service.PmsProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,14 +18,10 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
- * 商品管理Service实现类
+ * 汽车管理Service实现类
  */
 @Service
 public class PmsProductServiceImpl implements PmsProductService {
@@ -32,83 +29,23 @@ public class PmsProductServiceImpl implements PmsProductService {
     @Resource
     private com.jzh.car.mapper.PmsProductMapper productMapper;
     @Resource
-    private PmsMemberPriceMapper memberPriceDao;
-    @Resource
-    private com.jzh.car.mapper.PmsMemberPriceMapper memberPriceMapper;
-    @Resource
-    private PmsProductLadderMapper productLadderDao;
-    @Resource
-    private com.jzh.car.mapper.PmsProductLadderMapper productLadderMapper;
-    @Resource
-    private PmsProductFullReductionMapper productFullReductionDao;
-    @Resource
-    private com.jzh.car.mapper.PmsProductFullReductionMapper productFullReductionMapper;
-    @Resource
-    private PmsSkuStockMapper skuStockDao;
-    @Resource
-    private com.jzh.car.mapper.PmsSkuStockMapper skuStockMapper;
-    @Resource
     private PmsProductAttributeValueMapper productAttributeValueDao;
     @Resource
     private com.jzh.car.mapper.PmsProductAttributeValueMapper productAttributeValueMapper;
     @Resource
-    private CmsSubjectProductRelationMapper subjectProductRelationDao;
-    @Resource
-    private com.jzh.car.mapper.CmsSubjectProductRelationMapper subjectProductRelationMapper;
-    @Resource
-    private CmsPrefrenceAreaProductRelationMapper prefrenceAreaProductRelationDao;
-    @Resource
-    private com.jzh.car.mapper.CmsPrefrenceAreaProductRelationMapper prefrenceAreaProductRelationMapper;
-    @Resource
     private PmsProductMapper productDao;
-    @Resource
-    private PmsProductVertifyRecordMapper productVertifyRecordDao;
 
     @Override
     public int create(PmsProductParam productParam) {
         int count;
-        //创建商品
+        //创建汽车
         PmsProduct product = productParam;
         product.setId(null);
         productMapper.insertSelective(product);
-        //根据促销类型设置价格：会员价格、阶梯价格、满减价格
-        Long productId = product.getId();
-        //会员价格
-        relateAndInsertList(memberPriceDao, productParam.getMemberPriceList(), productId);
-        //阶梯价格
-        relateAndInsertList(productLadderDao, productParam.getProductLadderList(), productId);
-        //满减价格
-        relateAndInsertList(productFullReductionDao, productParam.getProductFullReductionList(), productId);
-        //处理sku的编码
-        handleSkuStockCode(productParam.getSkuStockList(), productId);
-        //添加sku库存信息
-        relateAndInsertList(skuStockDao, productParam.getSkuStockList(), productId);
-        //添加商品参数,添加自定义商品规格
-        relateAndInsertList(productAttributeValueDao, productParam.getProductAttributeValueList(), productId);
-        //关联专题
-        relateAndInsertList(subjectProductRelationDao, productParam.getSubjectProductRelationList(), productId);
-        //关联优选
-        relateAndInsertList(prefrenceAreaProductRelationDao, productParam.getPrefrenceAreaProductRelationList(), productId);
+        //添加汽车参数,添加自定义汽车规格
+        relateAndInsertList(productAttributeValueDao, productParam.getProductAttributeValueList(), product.getId());
         count = 1;
         return count;
-    }
-
-    private void handleSkuStockCode(List<PmsSkuStock> skuStockList, Long productId) {
-        if (CollectionUtils.isEmpty(skuStockList)) return;
-        for (int i = 0; i < skuStockList.size(); i++) {
-            PmsSkuStock skuStock = skuStockList.get(i);
-            if (StrUtil.isEmpty(skuStock.getSkuCode())) {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                StringBuilder sb = new StringBuilder();
-                //日期
-                sb.append(sdf.format(new Date()));
-                //四位商品id
-                sb.append(String.format("%04d", productId));
-                //三位索引id
-                sb.append(String.format("%03d", i + 1));
-                skuStock.setSkuCode(sb.toString());
-            }
-        }
     }
 
     @Override
@@ -119,87 +56,17 @@ public class PmsProductServiceImpl implements PmsProductService {
     @Override
     public int update(Long id, PmsProductParam productParam) {
         int count;
-        //更新商品信息
+        //更新汽车信息
         PmsProduct product = productParam;
         product.setId(id);
         productMapper.updateByPrimaryKeySelective(product);
-        //会员价格
-        PmsMemberPriceExample pmsMemberPriceExample = new PmsMemberPriceExample();
-        pmsMemberPriceExample.createCriteria().andProductIdEqualTo(id);
-        memberPriceMapper.deleteByExample(pmsMemberPriceExample);
-        relateAndInsertList(memberPriceDao, productParam.getMemberPriceList(), id);
-        //阶梯价格
-        PmsProductLadderExample ladderExample = new PmsProductLadderExample();
-        ladderExample.createCriteria().andProductIdEqualTo(id);
-        productLadderMapper.deleteByExample(ladderExample);
-        relateAndInsertList(productLadderDao, productParam.getProductLadderList(), id);
-        //满减价格
-        PmsProductFullReductionExample fullReductionExample = new PmsProductFullReductionExample();
-        fullReductionExample.createCriteria().andProductIdEqualTo(id);
-        productFullReductionMapper.deleteByExample(fullReductionExample);
-        relateAndInsertList(productFullReductionDao, productParam.getProductFullReductionList(), id);
-        //修改sku库存信息
-        handleUpdateSkuStockList(id, productParam);
-        //修改商品参数,添加自定义商品规格
+        //修改汽车参数,添加自定义汽车规格
         PmsProductAttributeValueExample productAttributeValueExample = new PmsProductAttributeValueExample();
         productAttributeValueExample.createCriteria().andProductIdEqualTo(id);
         productAttributeValueMapper.deleteByExample(productAttributeValueExample);
         relateAndInsertList(productAttributeValueDao, productParam.getProductAttributeValueList(), id);
-        //关联专题
-        CmsSubjectProductRelationExample subjectProductRelationExample = new CmsSubjectProductRelationExample();
-        subjectProductRelationExample.createCriteria().andProductIdEqualTo(id);
-        subjectProductRelationMapper.deleteByExample(subjectProductRelationExample);
-        relateAndInsertList(subjectProductRelationDao, productParam.getSubjectProductRelationList(), id);
-        //关联优选
-        CmsPrefrenceAreaProductRelationExample prefrenceAreaExample = new CmsPrefrenceAreaProductRelationExample();
-        prefrenceAreaExample.createCriteria().andProductIdEqualTo(id);
-        prefrenceAreaProductRelationMapper.deleteByExample(prefrenceAreaExample);
-        relateAndInsertList(prefrenceAreaProductRelationDao, productParam.getPrefrenceAreaProductRelationList(), id);
         count = 1;
         return count;
-    }
-
-    private void handleUpdateSkuStockList(Long id, PmsProductParam productParam) {
-        //当前的sku信息
-        List<PmsSkuStock> currSkuList = productParam.getSkuStockList();
-        //当前没有sku直接删除
-        if (CollUtil.isEmpty(currSkuList)) {
-            PmsSkuStockExample skuStockExample = new PmsSkuStockExample();
-            skuStockExample.createCriteria().andProductIdEqualTo(id);
-            skuStockMapper.deleteByExample(skuStockExample);
-            return;
-        }
-        //获取初始sku信息
-        PmsSkuStockExample skuStockExample = new PmsSkuStockExample();
-        skuStockExample.createCriteria().andProductIdEqualTo(id);
-        List<PmsSkuStock> oriStuList = skuStockMapper.selectByExample(skuStockExample);
-        //获取新增sku信息
-        List<PmsSkuStock> insertSkuList = currSkuList.stream().filter(item -> item.getId() == null).collect(Collectors.toList());
-        //获取需要更新的sku信息
-        List<PmsSkuStock> updateSkuList = currSkuList.stream().filter(item -> item.getId() != null).collect(Collectors.toList());
-        List<Long> updateSkuIds = updateSkuList.stream().map(PmsSkuStock::getId).collect(Collectors.toList());
-        //获取需要删除的sku信息
-        List<PmsSkuStock> removeSkuList = oriStuList.stream().filter(item -> !updateSkuIds.contains(item.getId())).collect(Collectors.toList());
-        handleSkuStockCode(insertSkuList, id);
-        handleSkuStockCode(updateSkuList, id);
-        //新增sku
-        if (CollUtil.isNotEmpty(insertSkuList)) {
-            relateAndInsertList(skuStockDao, insertSkuList, id);
-        }
-        //删除sku
-        if (CollUtil.isNotEmpty(removeSkuList)) {
-            List<Long> removeSkuIds = removeSkuList.stream().map(PmsSkuStock::getId).collect(Collectors.toList());
-            PmsSkuStockExample removeExample = new PmsSkuStockExample();
-            removeExample.createCriteria().andIdIn(removeSkuIds);
-            skuStockMapper.deleteByExample(removeExample);
-        }
-        //修改sku
-        if (CollUtil.isNotEmpty(updateSkuList)) {
-            for (PmsSkuStock pmsSkuStock : updateSkuList) {
-                skuStockMapper.updateByPrimaryKeySelective(pmsSkuStock);
-            }
-        }
-
     }
 
     @Override
@@ -227,28 +94,6 @@ public class PmsProductServiceImpl implements PmsProductService {
             criteria.andProductCategoryIdEqualTo(productQueryParam.getProductCategoryId());
         }
         return productMapper.selectByExample(productExample);
-    }
-
-    @Override
-    public int updateVerifyStatus(List<Long> ids, Integer verifyStatus, String detail) {
-        PmsProduct product = new PmsProduct();
-        product.setVerifyStatus(verifyStatus);
-        PmsProductExample example = new PmsProductExample();
-        example.createCriteria().andIdIn(ids);
-        List<PmsProductVertifyRecord> list = new ArrayList<>();
-        int count = productMapper.updateByExampleSelective(product, example);
-        //修改完审核状态后插入审核记录
-        for (Long id : ids) {
-            PmsProductVertifyRecord record = new PmsProductVertifyRecord();
-            record.setProductId(id);
-            record.setCreateTime(new Date());
-            record.setDetail(detail);
-            record.setStatus(verifyStatus);
-            record.setVertifyMan("test");
-            list.add(record);
-        }
-        productVertifyRecordDao.insertList(list);
-        return count;
     }
 
     @Override
@@ -318,9 +163,8 @@ public class PmsProductServiceImpl implements PmsProductService {
             Method insertList = dao.getClass().getMethod("insertList", List.class);
             insertList.invoke(dao, dataList);
         } catch (Exception e) {
-            LOGGER.warn("创建商品出错:{}", e.getMessage());
+            LOGGER.warn("创建汽车出错:{}", e.getMessage());
             throw new RuntimeException(e.getMessage());
         }
     }
-
 }

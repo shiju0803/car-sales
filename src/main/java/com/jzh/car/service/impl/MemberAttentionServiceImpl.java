@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 /**
- * 会员关注Service实现类
+ * 用户关注Service实现类
  */
 @Service
 public class MemberAttentionServiceImpl implements MemberAttentionService {

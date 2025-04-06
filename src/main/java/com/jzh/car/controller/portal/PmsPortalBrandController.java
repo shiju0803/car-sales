@@ -43,7 +43,7 @@ public class PmsPortalBrandController {
         return CommonResult.success(brand);
     }
 
-    @ApiOperation("分页获取品牌相关商品")
+    @ApiOperation("分页获取品牌相关汽车")
     @RequestMapping(value = "/productList", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<CommonPage<PmsProduct>> productList(@RequestParam Long brandId,

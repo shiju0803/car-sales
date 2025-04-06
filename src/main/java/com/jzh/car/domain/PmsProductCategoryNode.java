@@ -8,7 +8,7 @@ import lombok.EqualsAndHashCode;
 import java.util.List;
 
 /**
- * 包含子分类的商品分类
+ * 包含子分类的汽车分类
  */
 @EqualsAndHashCode(callSuper = true)
 @Data

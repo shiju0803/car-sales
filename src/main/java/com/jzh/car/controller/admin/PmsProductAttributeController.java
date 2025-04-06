@@ -18,11 +18,11 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 商品属性管理Controller
+ * 汽车属性管理Controller
  */
 @Controller
 @Api(tags = "PmsProductAttributeController")
-@Tag(name = "PmsProductAttributeController", description = "商品属性管理")
+@Tag(name = "PmsProductAttributeController", description = "汽车属性管理")
 @RequestMapping("/productAttribute")
 public class PmsProductAttributeController {
 
@@ -41,7 +41,7 @@ public class PmsProductAttributeController {
         return CommonResult.success(CommonPage.restPage(productAttributeList));
     }
 
-    @ApiOperation("添加商品属性信息")
+    @ApiOperation("添加汽车属性信息")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult create(@RequestBody PmsProductAttributeParam productAttributeParam) {
@@ -53,7 +53,7 @@ public class PmsProductAttributeController {
         }
     }
 
-    @ApiOperation("修改商品属性信息")
+    @ApiOperation("修改汽车属性信息")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult update(@PathVariable Long id, @RequestBody PmsProductAttributeParam productAttributeParam) {
@@ -65,7 +65,7 @@ public class PmsProductAttributeController {
         }
     }
 
-    @ApiOperation("查询单个商品属性")
+    @ApiOperation("查询单个汽车属性")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<PmsProductAttribute> getItem(@PathVariable Long id) {
@@ -73,7 +73,7 @@ public class PmsProductAttributeController {
         return CommonResult.success(productAttribute);
     }
 
-    @ApiOperation("批量删除商品属性")
+    @ApiOperation("批量删除汽车属性")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult delete(@RequestParam("ids") List<Long> ids) {
@@ -85,7 +85,7 @@ public class PmsProductAttributeController {
         }
     }
 
-    @ApiOperation("根据商品分类的id获取商品属性及属性分类")
+    @ApiOperation("根据汽车分类的id获取汽车属性及属性分类")
     @RequestMapping(value = "/attrInfo/{productCategoryId}", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<List<ProductAttrInfo>> getAttrInfo(@PathVariable Long productCategoryId) {

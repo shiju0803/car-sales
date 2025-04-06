@@ -15,11 +15,11 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 会员商品浏览记录管理Controller
+ * 用户汽车浏览记录管理Controller
  */
 @Controller
 @Api(tags = "MemberReadHistoryController")
-@Tag(name = "MemberReadHistoryController", description = "会员商品浏览记录管理")
+@Tag(name = "MemberReadHistoryController", description = "用户汽车浏览记录管理")
 @RequestMapping("/portal/member/readHistory")
 public class MemberReadHistoryController {
 

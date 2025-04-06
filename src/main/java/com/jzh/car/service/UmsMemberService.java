@@ -5,16 +5,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 会员管理Service
+ * 用户管理Service
  */
 public interface UmsMemberService {
     /**
-     * 根据用户名获取会员
+     * 根据用户名获取用户
      */
     UmsMember getByUsername(String username);
 
     /**
-     * 根据会员编号获取会员
+     * 根据用户编号获取用户
      */
     UmsMember getById(Long id);
 
@@ -36,12 +36,12 @@ public interface UmsMemberService {
     void updatePassword(String telephone, String password, String authCode);
 
     /**
-     * 获取当前登录会员
+     * 获取当前登录用户
      */
     UmsMember getCurrentMember();
 
     /**
-     * 根据会员id修改会员积分
+     * 根据用户id修改用户积分
      */
     void updateIntegration(Long id,Integer integration);
 

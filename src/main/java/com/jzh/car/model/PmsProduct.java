@@ -73,10 +73,10 @@ public class PmsProduct implements Serializable {
     @ApiModelProperty(value = "单位")
     private String unit;
 
-    @ApiModelProperty(value = "商品重量，默认为克")
+    @ApiModelProperty(value = "汽车重量，默认为克")
     private BigDecimal weight;
 
-    @ApiModelProperty(value = "是否为预告商品：0->不是；1->是")
+    @ApiModelProperty(value = "是否为预告汽车：0->不是；1->是")
     private Integer previewStatus;
 
     @ApiModelProperty(value = "以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮")
@@ -100,16 +100,16 @@ public class PmsProduct implements Serializable {
     @ApiModelProperty(value = "活动限购数量")
     private Integer promotionPerLimit;
 
-    @ApiModelProperty(value = "促销类型：0->没有促销使用原价;1->使用促销价；2->使用会员价；3->使用阶梯价格；4->使用满减价格；5->限时购")
+    @ApiModelProperty(value = "促销类型：0->没有促销使用原价;1->使用促销价；2->使用用户价；3->使用阶梯价格；4->使用满减价格；5->限时购")
     private Integer promotionType;
 
     @ApiModelProperty(value = "品牌名称")
     private String brandName;
 
-    @ApiModelProperty(value = "商品分类名称")
+    @ApiModelProperty(value = "汽车分类名称")
     private String productCategoryName;
 
-    @ApiModelProperty(value = "商品描述")
+    @ApiModelProperty(value = "汽车描述")
     private String description;
 
     private String detailDesc;

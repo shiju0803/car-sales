@@ -12,7 +12,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 商品属性分类管理Service实现类
+ * 汽车属性分类管理Service实现类
  */
 @Service
 public class PmsProductAttributeCategoryServiceImpl implements PmsProductAttributeCategoryService {

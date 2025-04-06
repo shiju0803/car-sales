@@ -16,7 +16,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 商品属性管理Service实现类
+ * 汽车属性管理Service实现类
  */
 @Service
 public class PmsProductAttributeServiceImpl implements PmsProductAttributeService {
@@ -41,7 +41,7 @@ public class PmsProductAttributeServiceImpl implements PmsProductAttributeServic
         PmsProductAttribute pmsProductAttribute = new PmsProductAttribute();
         BeanUtils.copyProperties(pmsProductAttributeParam, pmsProductAttribute);
         int count = productAttributeMapper.insertSelective(pmsProductAttribute);
-        //新增商品属性以后需要更新商品属性分类数量
+        //新增汽车属性以后需要更新汽车属性分类数量
         PmsProductAttributeCategory pmsProductAttributeCategory = productAttributeCategoryMapper.selectByPrimaryKey(pmsProductAttribute.getProductAttributeCategoryId());
         if (pmsProductAttribute.getType() == 0) {
             pmsProductAttributeCategory.setAttributeCount(pmsProductAttributeCategory.getAttributeCount() + 1);

@@ -1,5 +1,7 @@
 package com.jzh.car.component;
 
+import cn.hutool.core.util.StrUtil;
+import com.jzh.car.service.UmsMemberService;
 import com.jzh.car.util.JwtTokenUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +27,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Resource
     private UserDetailsService userDetailsService;
     @Resource
+    private UmsMemberService memberService;
+    @Resource
     private JwtTokenUtil jwtTokenUtil;
     @Value("${jwt.tokenHeader}")
     private String tokenHeader;
@@ -41,7 +45,14 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             String username = jwtTokenUtil.getUserNameFromToken(authToken);
             log.info("checking username:{}", username);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+                String requestURI = request.getRequestURI();
+                UserDetails userDetails;
+                if (StrUtil.contains(requestURI, "/portal")) {
+                    userDetails = this.memberService.loadUserByUsername(username);
+                } else {
+                    userDetails = this.userDetailsService.loadUserByUsername(username);
+                }
+
                 if (jwtTokenUtil.validateToken(authToken, userDetails)) {
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));

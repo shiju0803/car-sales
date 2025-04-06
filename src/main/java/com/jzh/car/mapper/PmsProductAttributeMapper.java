@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PmsProductAttributeMapper {
     /**
-     * 获取商品属性信息
+     * 获取汽车属性信息
      */
     List<ProductAttrInfo> getProductAttrInfo(@Param("id") Long productCategoryId);
 

@@ -1,5 +1,6 @@
 package com.jzh.car.service.impl;
 
+import cn.hutool.core.collection.CollUtil;
 import com.github.pagehelper.PageHelper;
 import com.jzh.car.dto.PmsProductCategoryParam;
 import com.jzh.car.dto.PmsProductCategoryWithChildrenItem;
@@ -8,7 +9,6 @@ import com.jzh.car.mapper.PmsProductCategoryMapper;
 import com.jzh.car.mapper.PmsProductMapper;
 import com.jzh.car.model.*;
 import com.jzh.car.service.PmsProductCategoryService;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 商品分类管理Service实现类
+ * 汽车分类管理Service实现类
  */
 @Service
 public class PmsProductCategoryServiceImpl implements PmsProductCategoryService {
@@ -42,17 +42,17 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
         int count = productCategoryMapper.insertSelective(productCategory);
         //创建筛选属性关联
         List<Long> productAttributeIdList = pmsProductCategoryParam.getProductAttributeIdList();
-        if (!CollectionUtils.isEmpty(productAttributeIdList)) {
+        if (!CollUtil.isEmpty(productAttributeIdList)) {
             insertRelationList(productCategory.getId(), productAttributeIdList);
         }
         return count;
     }
 
     /**
-     * 批量插入商品分类与筛选属性关系表
+     * 批量插入汽车分类与筛选属性关系表
      *
-     * @param productCategoryId      商品分类id
-     * @param productAttributeIdList 相关商品筛选属性id集合
+     * @param productCategoryId      汽车分类id
+     * @param productAttributeIdList 相关汽车筛选属性id集合
      */
     private void insertRelationList(Long productCategoryId, List<Long> productAttributeIdList) {
         List<PmsProductCategoryAttributeRelation> relationList = new ArrayList<>();
@@ -71,14 +71,14 @@ public class PmsProductCategoryServiceImpl implements PmsProductCategoryService 
         productCategory.setId(id);
         BeanUtils.copyProperties(pmsProductCategoryParam, productCategory);
         setCategoryLevel(productCategory);
-        //更新商品分类时要更新商品中的名称
+        //更新汽车分类时要更新汽车中的名称
         PmsProduct product = new PmsProduct();
         product.setProductCategoryName(productCategory.getName());
         PmsProductExample example = new PmsProductExample();
         example.createCriteria().andProductCategoryIdEqualTo(id);
         productMapper.updateByExampleSelective(product, example);
         //同时更新筛选属性的信息
-        if (!CollectionUtils.isEmpty(pmsProductCategoryParam.getProductAttributeIdList())) {
+        if (!CollUtil.isEmpty(pmsProductCategoryParam.getProductAttributeIdList())) {
             PmsProductCategoryAttributeRelationExample relationExample = new PmsProductCategoryAttributeRelationExample();
             relationExample.createCriteria().andProductCategoryIdEqualTo(id);
             productCategoryAttributeRelationMapper.deleteByExample(relationExample);

@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 商品品牌管理Service实现类
+ * 汽车品牌管理Service实现类
  */
 @Service
 public class PmsBrandServiceImpl implements PmsBrandService {
@@ -51,7 +51,7 @@ public class PmsBrandServiceImpl implements PmsBrandService {
         if (StrUtil.isEmpty(pmsBrand.getFirstLetter())) {
             pmsBrand.setFirstLetter(pmsBrand.getName().substring(0, 1));
         }
-        //更新品牌时要更新商品中的品牌名称
+        //更新品牌时要更新汽车中的品牌名称
         PmsProduct product = new PmsProduct();
         product.setBrandName(pmsBrand.getName());
         PmsProductExample example = new PmsProductExample();

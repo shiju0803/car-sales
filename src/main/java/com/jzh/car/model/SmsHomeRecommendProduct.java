@@ -1,6 +1,5 @@
 package com.jzh.car.model;
 
-import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 
 public class SmsHomeRecommendProduct implements Serializable {

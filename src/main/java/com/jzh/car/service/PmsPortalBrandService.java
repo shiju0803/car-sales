@@ -21,7 +21,7 @@ public interface PmsPortalBrandService {
     PmsBrand detail(Long brandId);
 
     /**
-     * 分页获取品牌关联商品
+     * 分页获取品牌关联汽车
      */
     CommonPage<PmsProduct> productList(Long brandId, Integer pageNum, Integer pageSize);
 }

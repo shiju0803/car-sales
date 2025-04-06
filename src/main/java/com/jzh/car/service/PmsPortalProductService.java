@@ -7,21 +7,22 @@ import com.jzh.car.model.PmsProduct;
 import java.util.List;
 
 /**
- * 前台商品管理Service
+ * 前台汽车管理Service
  */
 public interface PmsPortalProductService {
+
     /**
-     * 综合搜索商品
+     * 综合搜索汽车
      */
     List<PmsProduct> search(String keyword, Long brandId, Long productCategoryId, Integer pageNum, Integer pageSize, Integer sort);
 
     /**
-     * 以树形结构获取所有商品分类
+     * 以树形结构获取所有汽车分类
      */
     List<PmsProductCategoryNode> categoryTreeList();
 
     /**
-     * 获取前台商品详情
+     * 获取前台汽车详情
      */
     PmsPortalProductDetail detail(Long id);
 }

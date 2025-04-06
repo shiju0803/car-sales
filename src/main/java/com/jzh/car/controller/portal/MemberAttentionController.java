@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * 会员品牌关注管理Controller
+ * 用户品牌关注管理Controller
  */
 @Controller
 @Api(tags = "MemberAttentionController")
-@Tag(name = "MemberAttentionController", description = "会员关注品牌管理")
+@Tag(name = "MemberAttentionController", description = "用户关注品牌管理")
 @RequestMapping("/portal/member/attention")
 public class MemberAttentionController {
 

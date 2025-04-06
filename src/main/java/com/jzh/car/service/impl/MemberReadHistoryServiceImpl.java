@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * 会员浏览记录管理Service实现类
+ * 用户浏览记录管理Service实现类
  */
 @Service
 public class MemberReadHistoryServiceImpl implements MemberReadHistoryService {

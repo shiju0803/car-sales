@@ -3,12 +3,9 @@ package com.jzh.car.service.impl;
 import cn.hutool.core.util.StrUtil;
 import com.jzh.car.domain.MemberDetails;
 import com.jzh.car.exception.Asserts;
-import com.jzh.car.mapper.UmsMemberLevelMapper;
 import com.jzh.car.mapper.UmsMemberMapper;
 import com.jzh.car.model.UmsMember;
 import com.jzh.car.model.UmsMemberExample;
-import com.jzh.car.model.UmsMemberLevel;
-import com.jzh.car.model.UmsMemberLevelExample;
 import com.jzh.car.service.UmsMemberCacheService;
 import com.jzh.car.service.UmsMemberService;
 import com.jzh.car.util.JwtTokenUtil;
@@ -33,7 +30,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * 会员管理Service实现类
+ * 用户管理Service实现类
  */
 @Service
 public class UmsMemberServiceImpl implements UmsMemberService {
@@ -44,8 +41,6 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     private JwtTokenUtil jwtTokenUtil;
     @Resource
     private UmsMemberMapper memberMapper;
-    @Resource
-    private UmsMemberLevelMapper memberLevelMapper;
     @Resource
     private UmsMemberCacheService memberCacheService;
     @Value("${redis.key.authCode}")
@@ -94,13 +89,6 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         umsMember.setPassword(passwordEncoder.encode(password));
         umsMember.setCreateTime(new Date());
         umsMember.setStatus(1);
-        //获取默认会员等级并设置
-        UmsMemberLevelExample levelExample = new UmsMemberLevelExample();
-        levelExample.createCriteria().andDefaultStatusEqualTo(1);
-        List<UmsMemberLevel> memberLevelList = memberLevelMapper.selectByExample(levelExample);
-        if (!CollectionUtils.isEmpty(memberLevelList)) {
-            umsMember.setMemberLevelId(memberLevelList.get(0).getId());
-        }
         memberMapper.insert(umsMember);
         umsMember.setPassword(null);
     }

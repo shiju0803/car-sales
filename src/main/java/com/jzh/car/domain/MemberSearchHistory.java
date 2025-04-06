@@ -8,21 +8,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 /**
- * 用户品牌关注
+ * 用户搜索历史记录
  */
 @Data
 @Document
-public class MemberBrandAttention {
+public class MemberSearchHistory {
     @Id
     private String id;
     @Indexed
     private Long memberId;
-    private String memberNickname;
-    private String memberIcon;
-    @Indexed
-    private Long brandId;
-    private String brandName;
-    private String brandLogo;
-    private String brandCity;
+    private String keyword;
     private Date createTime;
 }

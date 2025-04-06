@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * 商品品牌管理Service
+ * 汽车品牌管理Service
  */
 public interface PmsBrandService {
     /**

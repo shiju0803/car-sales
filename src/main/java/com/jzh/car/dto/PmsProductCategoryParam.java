@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 /**
- * 添加更新商品分类的参数
+ * 添加更新汽车分类的参数
  */
 @Data
 @EqualsAndHashCode
@@ -18,7 +18,7 @@ public class PmsProductCategoryParam {
     @ApiModelProperty("父分类的编号")
     private Long parentId;
     @NotEmpty
-    @ApiModelProperty(value = "商品分类名称",required = true)
+    @ApiModelProperty(value = "汽车分类名称",required = true)
     private String name;
     @ApiModelProperty("分类单位")
     private String productUnit;
@@ -37,6 +37,6 @@ public class PmsProductCategoryParam {
     private String keywords;
     @ApiModelProperty("描述")
     private String description;
-    @ApiModelProperty("商品相关筛选属性集合")
+    @ApiModelProperty("汽车相关筛选属性集合")
     private List<Long> productAttributeIdList;
 }

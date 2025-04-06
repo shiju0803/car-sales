@@ -17,11 +17,11 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 前台商品管理Controller
+ * 前台汽车管理Controller
  */
 @Controller
 @Api(tags = "PmsPortalProductController")
-@Tag(name = "PmsPortalProductController", description = "前台商品管理")
+@Tag(name = "PmsPortalProductController", description = "前台汽车管理")
 @RequestMapping("/portal/product")
 public class PmsPortalProductController {
 
@@ -36,14 +36,14 @@ public class PmsPortalProductController {
     public CommonResult<CommonPage<PmsProduct>> search(@RequestParam(required = false) String keyword,
                                                        @RequestParam(required = false) Long brandId,
                                                        @RequestParam(required = false) Long productCategoryId,
-                                                       @RequestParam(required = false, defaultValue = "0") Integer pageNum,
+                                                       @RequestParam(required = false, defaultValue = "1") Integer pageNum,
                                                        @RequestParam(required = false, defaultValue = "5") Integer pageSize,
                                                        @RequestParam(required = false, defaultValue = "0") Integer sort) {
         List<PmsProduct> productList = portalProductService.search(keyword, brandId, productCategoryId, pageNum, pageSize, sort);
         return CommonResult.success(CommonPage.restPage(productList));
     }
 
-    @ApiOperation("以树形结构获取所有商品分类")
+    @ApiOperation("以树形结构获取所有汽车分类")
     @RequestMapping(value = "/categoryTreeList", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<List<PmsProductCategoryNode>> categoryTreeList() {
@@ -51,7 +51,7 @@ public class PmsPortalProductController {
         return CommonResult.success(list);
     }
 
-    @ApiOperation("获取前台商品详情")
+    @ApiOperation("获取前台汽车详情")
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<PmsPortalProductDetail> detail(@PathVariable Long id) {

@@ -6,13 +6,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 商品分类对应属性信息
+ * 汽车分类对应属性信息
  */
 @Data
 @EqualsAndHashCode
 public class ProductAttrInfo {
-    @ApiModelProperty("商品属性ID")
+    @ApiModelProperty("汽车属性ID")
     private Long attributeId;
-    @ApiModelProperty("商品属性分类ID")
+    @ApiModelProperty("汽车属性分类ID")
     private Long attributeCategoryId;
 }

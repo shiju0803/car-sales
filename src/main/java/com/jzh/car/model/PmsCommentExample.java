@@ -425,73 +425,73 @@ public class PmsCommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpIsNull() {
-            addCriterion("member_ip is null");
+        public Criteria andMemberIdIsNull() {
+            addCriterion("member_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpIsNotNull() {
-            addCriterion("member_ip is not null");
+        public Criteria andMemberIdIsNotNull() {
+            addCriterion("member_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpEqualTo(String value) {
-            addCriterion("member_ip =", value, "memberIp");
+        public Criteria andMemberIdEqualTo(Long value) {
+            addCriterion("member_id =", value, "memberId");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpNotEqualTo(String value) {
-            addCriterion("member_ip <>", value, "memberIp");
+        public Criteria andMemberIdNotEqualTo(Long value) {
+            addCriterion("member_id <>", value, "memberId");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpGreaterThan(String value) {
-            addCriterion("member_ip >", value, "memberIp");
+        public Criteria andMemberIdGreaterThan(Long value) {
+            addCriterion("member_id >", value, "memberId");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpGreaterThanOrEqualTo(String value) {
-            addCriterion("member_ip >=", value, "memberIp");
+        public Criteria andMemberIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("member_id >=", value, "memberId");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpLessThan(String value) {
-            addCriterion("member_ip <", value, "memberIp");
+        public Criteria andMemberIdLessThan(Long value) {
+            addCriterion("member_id <", value, "memberId");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpLessThanOrEqualTo(String value) {
-            addCriterion("member_ip <=", value, "memberIp");
+        public Criteria andMemberIdLessThanOrEqualTo(Long value) {
+            addCriterion("member_id <=", value, "memberId");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpLike(String value) {
-            addCriterion("member_ip like", value, "memberIp");
+        public Criteria andMemberIdLike(Long value) {
+            addCriterion("member_id like", value, "memberId");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpNotLike(String value) {
-            addCriterion("member_ip not like", value, "memberIp");
+        public Criteria andMemberIdNotLike(Long value) {
+            addCriterion("member_id not like", value, "memberId");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpIn(List<String> values) {
-            addCriterion("member_ip in", values, "memberIp");
+        public Criteria andMemberIdIn(List<Long> values) {
+            addCriterion("member_id in", values, "memberId");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpNotIn(List<String> values) {
-            addCriterion("member_ip not in", values, "memberIp");
+        public Criteria andMemberIdNotIn(List<Long> values) {
+            addCriterion("member_id not in", values, "memberId");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpBetween(String value1, String value2) {
-            addCriterion("member_ip between", value1, value2, "memberIp");
+        public Criteria andMemberIdBetween(Long value1, Long value2) {
+            addCriterion("member_id between", value1, value2, "memberId");
             return (Criteria) this;
         }
 
-        public Criteria andMemberIpNotBetween(String value1, String value2) {
-            addCriterion("member_ip not between", value1, value2, "memberIp");
+        public Criteria andMemberIdNotBetween(Long value1, Long value2) {
+            addCriterion("member_id not between", value1, value2, "memberId");
             return (Criteria) this;
         }
 
@@ -612,136 +612,6 @@ public class PmsCommentExample {
 
         public Criteria andShowStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("show_status not between", value1, value2, "showStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeIsNull() {
-            addCriterion("product_attribute is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeIsNotNull() {
-            addCriterion("product_attribute is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeEqualTo(String value) {
-            addCriterion("product_attribute =", value, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeNotEqualTo(String value) {
-            addCriterion("product_attribute <>", value, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeGreaterThan(String value) {
-            addCriterion("product_attribute >", value, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeGreaterThanOrEqualTo(String value) {
-            addCriterion("product_attribute >=", value, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeLessThan(String value) {
-            addCriterion("product_attribute <", value, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeLessThanOrEqualTo(String value) {
-            addCriterion("product_attribute <=", value, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeLike(String value) {
-            addCriterion("product_attribute like", value, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeNotLike(String value) {
-            addCriterion("product_attribute not like", value, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeIn(List<String> values) {
-            addCriterion("product_attribute in", values, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeNotIn(List<String> values) {
-            addCriterion("product_attribute not in", values, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeBetween(String value1, String value2) {
-            addCriterion("product_attribute between", value1, value2, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductAttributeNotBetween(String value1, String value2) {
-            addCriterion("product_attribute not between", value1, value2, "productAttribute");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontIsNull() {
-            addCriterion("collect_couont is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontIsNotNull() {
-            addCriterion("collect_couont is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontEqualTo(Integer value) {
-            addCriterion("collect_couont =", value, "collectCouont");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontNotEqualTo(Integer value) {
-            addCriterion("collect_couont <>", value, "collectCouont");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontGreaterThan(Integer value) {
-            addCriterion("collect_couont >", value, "collectCouont");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontGreaterThanOrEqualTo(Integer value) {
-            addCriterion("collect_couont >=", value, "collectCouont");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontLessThan(Integer value) {
-            addCriterion("collect_couont <", value, "collectCouont");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontLessThanOrEqualTo(Integer value) {
-            addCriterion("collect_couont <=", value, "collectCouont");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontIn(List<Integer> values) {
-            addCriterion("collect_couont in", values, "collectCouont");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontNotIn(List<Integer> values) {
-            addCriterion("collect_couont not in", values, "collectCouont");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontBetween(Integer value1, Integer value2) {
-            addCriterion("collect_couont between", value1, value2, "collectCouont");
-            return (Criteria) this;
-        }
-
-        public Criteria andCollectCouontNotBetween(Integer value1, Integer value2) {
-            addCriterion("collect_couont not between", value1, value2, "collectCouont");
             return (Criteria) this;
         }
 

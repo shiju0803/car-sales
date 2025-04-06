@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PmsProductAttributeCategoryMapper {
     /**
-     * 获取包含属性的商品属性分类
+     * 获取包含属性的汽车属性分类
      */
     List<PmsProductAttributeCategoryItem> getListWithAttr();
 

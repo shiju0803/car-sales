@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 /**
- * 会员商品收藏
+ * 用户汽车收藏
  */
 @Data
 @Document

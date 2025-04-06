@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PmsProductMapper {
     /**
-     * 获取商品编辑信息
+     * 获取汽车编辑信息
      */
     PmsProductResult getUpdateInfo(@Param("id") Long id);
 

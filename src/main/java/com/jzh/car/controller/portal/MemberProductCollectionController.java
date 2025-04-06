@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
 /**
- * 会员商品收藏管理Controller
+ * 用户汽车收藏管理Controller
  */
 @Controller
 @Api(tags = "MemberCollectionController")
-@Tag(name = "MemberCollectionController", description = "会员收藏管理")
+@Tag(name = "MemberCollectionController", description = "用户收藏管理")
 @RequestMapping("/portal/member/productCollection")
 public class MemberProductCollectionController {
 
     @Resource
     private MemberCollectionService memberCollectionService;
 
-    @ApiOperation("添加商品收藏")
+    @ApiOperation("添加汽车收藏")
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult add(@RequestBody MemberProductCollection productCollection) {
@@ -37,7 +37,7 @@ public class MemberProductCollectionController {
         }
     }
 
-    @ApiOperation("删除商品收藏")
+    @ApiOperation("删除汽车收藏")
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult delete(Long productId) {
@@ -49,7 +49,7 @@ public class MemberProductCollectionController {
         }
     }
 
-    @ApiOperation("显示当前用户商品收藏列表")
+    @ApiOperation("显示当前用户汽车收藏列表")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<CommonPage<MemberProductCollection>> list(@RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
@@ -58,7 +58,7 @@ public class MemberProductCollectionController {
         return CommonResult.success(CommonPage.restPage(page));
     }
 
-    @ApiOperation("显示商品收藏详情")
+    @ApiOperation("显示汽车收藏详情")
     @RequestMapping(value = "/detail", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<MemberProductCollection> detail(@RequestParam Long productId) {
@@ -66,7 +66,7 @@ public class MemberProductCollectionController {
         return CommonResult.success(memberProductCollection);
     }
 
-    @ApiOperation("清空当前用户商品收藏列表")
+    @ApiOperation("清空当前用户汽车收藏列表")
     @RequestMapping(value = "/clear", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult clear() {

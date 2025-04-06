@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 /**
- * 会员收藏Service实现类
+ * 用户收藏Service实现类
  */
 @Service
 public class MemberCollectionServiceImpl implements MemberCollectionService {

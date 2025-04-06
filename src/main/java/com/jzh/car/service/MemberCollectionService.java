@@ -4,7 +4,7 @@ import com.jzh.car.domain.MemberProductCollection;
 import org.springframework.data.domain.Page;
 
 /**
- * 会员商品收藏管理Service
+ * 用户汽车收藏管理Service
  */
 public interface MemberCollectionService {
     /**

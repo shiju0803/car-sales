@@ -6,7 +6,7 @@ import com.jzh.car.model.PmsProductAttributeCategory;
 import java.util.List;
 
 /**
- * 商品属性分类管理Service
+ * 汽车属性分类管理Service
  */
 public interface PmsProductAttributeCategoryService {
     /**

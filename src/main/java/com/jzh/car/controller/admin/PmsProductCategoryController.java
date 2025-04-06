@@ -17,18 +17,18 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 商品分类管理Controller
+ * 汽车分类管理Controller
  */
 @Controller
 @Api(tags = "PmsProductCategoryController")
-@Tag(name = "PmsProductCategoryController", description = "商品分类管理")
+@Tag(name = "PmsProductCategoryController", description = "汽车分类管理")
 @RequestMapping("/productCategory")
 public class PmsProductCategoryController {
 
     @Resource
     private PmsProductCategoryService productCategoryService;
 
-    @ApiOperation("添加商品分类")
+    @ApiOperation("添加汽车分类")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult create(@Validated @RequestBody PmsProductCategoryParam productCategoryParam) {
@@ -40,7 +40,7 @@ public class PmsProductCategoryController {
         }
     }
 
-    @ApiOperation("修改商品分类")
+    @ApiOperation("修改汽车分类")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult update(@PathVariable Long id,
@@ -54,7 +54,7 @@ public class PmsProductCategoryController {
         }
     }
 
-    @ApiOperation("分页查询商品分类")
+    @ApiOperation("分页查询汽车分类")
     @RequestMapping(value = "/list/{parentId}", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<CommonPage<PmsProductCategory>> getList(@PathVariable Long parentId,
@@ -64,7 +64,7 @@ public class PmsProductCategoryController {
         return CommonResult.success(CommonPage.restPage(productCategoryList));
     }
 
-    @ApiOperation("根据id获取商品分类")
+    @ApiOperation("根据id获取汽车分类")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult<PmsProductCategory> getItem(@PathVariable Long id) {
@@ -72,7 +72,7 @@ public class PmsProductCategoryController {
         return CommonResult.success(productCategory);
     }
 
-    @ApiOperation("删除商品分类")
+    @ApiOperation("删除汽车分类")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult delete(@PathVariable Long id) {

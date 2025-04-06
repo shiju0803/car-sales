@@ -16,11 +16,11 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * 商品品牌管理Controller
+ * 汽车品牌管理Controller
  */
 @Controller
 @Api(tags = "PmsBrandController")
-@Tag(name = "PmsBrandController", description = "商品品牌管理")
+@Tag(name = "PmsBrandController", description = "汽车品牌管理")
 @RequestMapping("/brand")
 public class PmsBrandController {
 

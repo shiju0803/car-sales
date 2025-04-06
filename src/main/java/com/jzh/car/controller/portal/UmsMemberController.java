@@ -20,11 +20,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 会员管理Controller
+ * 用户管理Controller
  */
 @Controller
 @Api(tags = "UmsMemberController")
-@Tag(name = "UmsMemberController", description = "会员登录注册管理")
+@Tag(name = "UmsMemberController", description = "用户登录注册管理")
 @RequestMapping("/portal/sso")
 public class UmsMemberController {
     @Value("${jwt.tokenHeader}")
@@ -34,7 +34,7 @@ public class UmsMemberController {
     @Resource
     private UmsMemberService memberService;
 
-    @ApiOperation("会员注册")
+    @ApiOperation("用户注册")
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult register(@RequestParam String username,
@@ -45,7 +45,7 @@ public class UmsMemberController {
         return CommonResult.success(null, "注册成功");
     }
 
-    @ApiOperation("会员登录")
+    @ApiOperation("用户登录")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult login(@RequestParam String username,
@@ -60,7 +60,7 @@ public class UmsMemberController {
         return CommonResult.success(tokenMap);
     }
 
-    @ApiOperation("获取会员信息")
+    @ApiOperation("获取用户信息")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     @ResponseBody
     public CommonResult info(Principal principal) {
@@ -79,7 +79,7 @@ public class UmsMemberController {
         return CommonResult.success(authCode, "获取验证码成功");
     }
 
-    @ApiOperation("会员修改密码")
+    @ApiOperation("用户修改密码")
     @RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
     @ResponseBody
     public CommonResult updatePassword(@RequestParam String telephone,
