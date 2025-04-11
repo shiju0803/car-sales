@@ -1,9 +1,9 @@
 package com.jzh.car.model;
 
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
 
 public class PmsProduct implements Serializable {
     private Long id;
@@ -12,16 +12,11 @@ public class PmsProduct implements Serializable {
 
     private Long productCategoryId;
 
-    private Long feightTemplateId;
-
     private Long productAttributeCategoryId;
 
     private String name;
 
     private String pic;
-
-    @ApiModelProperty(value = "货号")
-    private String productSn;
 
     @ApiModelProperty(value = "删除状态：0->未删除；1->已删除")
     private Integer deleteStatus;
@@ -41,34 +36,10 @@ public class PmsProduct implements Serializable {
     @ApiModelProperty(value = "排序")
     private Integer sort;
 
-    @ApiModelProperty(value = "销量")
-    private Integer sale;
-
     private BigDecimal price;
-
-    @ApiModelProperty(value = "促销价格")
-    private BigDecimal promotionPrice;
-
-    @ApiModelProperty(value = "赠送的成长值")
-    private Integer giftGrowth;
-
-    @ApiModelProperty(value = "赠送的积分")
-    private Integer giftPoint;
-
-    @ApiModelProperty(value = "限制使用的积分数")
-    private Integer usePointLimit;
 
     @ApiModelProperty(value = "副标题")
     private String subTitle;
-
-    @ApiModelProperty(value = "市场价")
-    private BigDecimal originalPrice;
-
-    @ApiModelProperty(value = "库存")
-    private Integer stock;
-
-    @ApiModelProperty(value = "库存预警值")
-    private Integer lowStock;
 
     @ApiModelProperty(value = "单位")
     private String unit;
@@ -79,9 +50,6 @@ public class PmsProduct implements Serializable {
     @ApiModelProperty(value = "是否为预告汽车：0->不是；1->是")
     private Integer previewStatus;
 
-    @ApiModelProperty(value = "以逗号分割的产品服务：1->无忧退货；2->快速退款；3->免费包邮")
-    private String serviceIds;
-
     private String keywords;
 
     private String note;
@@ -90,18 +58,6 @@ public class PmsProduct implements Serializable {
     private String albumPics;
 
     private String detailTitle;
-
-    @ApiModelProperty(value = "促销开始时间")
-    private Date promotionStartTime;
-
-    @ApiModelProperty(value = "促销结束时间")
-    private Date promotionEndTime;
-
-    @ApiModelProperty(value = "活动限购数量")
-    private Integer promotionPerLimit;
-
-    @ApiModelProperty(value = "促销类型：0->没有促销使用原价;1->使用促销价；2->使用用户价；3->使用阶梯价格；4->使用满减价格；5->限时购")
-    private Integer promotionType;
 
     @ApiModelProperty(value = "品牌名称")
     private String brandName;
@@ -146,14 +102,6 @@ public class PmsProduct implements Serializable {
         this.productCategoryId = productCategoryId;
     }
 
-    public Long getFeightTemplateId() {
-        return feightTemplateId;
-    }
-
-    public void setFeightTemplateId(Long feightTemplateId) {
-        this.feightTemplateId = feightTemplateId;
-    }
-
     public Long getProductAttributeCategoryId() {
         return productAttributeCategoryId;
     }
@@ -176,14 +124,6 @@ public class PmsProduct implements Serializable {
 
     public void setPic(String pic) {
         this.pic = pic;
-    }
-
-    public String getProductSn() {
-        return productSn;
-    }
-
-    public void setProductSn(String productSn) {
-        this.productSn = productSn;
     }
 
     public Integer getDeleteStatus() {
@@ -234,14 +174,6 @@ public class PmsProduct implements Serializable {
         this.sort = sort;
     }
 
-    public Integer getSale() {
-        return sale;
-    }
-
-    public void setSale(Integer sale) {
-        this.sale = sale;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
@@ -249,69 +181,12 @@ public class PmsProduct implements Serializable {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
-    public BigDecimal getPromotionPrice() {
-        return promotionPrice;
-    }
-
-    public void setPromotionPrice(BigDecimal promotionPrice) {
-        this.promotionPrice = promotionPrice;
-    }
-
-    public Integer getGiftGrowth() {
-        return giftGrowth;
-    }
-
-    public void setGiftGrowth(Integer giftGrowth) {
-        this.giftGrowth = giftGrowth;
-    }
-
-    public Integer getGiftPoint() {
-        return giftPoint;
-    }
-
-    public void setGiftPoint(Integer giftPoint) {
-        this.giftPoint = giftPoint;
-    }
-
-    public Integer getUsePointLimit() {
-        return usePointLimit;
-    }
-
-    public void setUsePointLimit(Integer usePointLimit) {
-        this.usePointLimit = usePointLimit;
-    }
-
     public String getSubTitle() {
         return subTitle;
     }
 
     public void setSubTitle(String subTitle) {
         this.subTitle = subTitle;
-    }
-
-    public BigDecimal getOriginalPrice() {
-        return originalPrice;
-    }
-
-    public void setOriginalPrice(BigDecimal originalPrice) {
-        this.originalPrice = originalPrice;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
-    public Integer getLowStock() {
-        return lowStock;
-    }
-
-    public void setLowStock(Integer lowStock) {
-        this.lowStock = lowStock;
     }
 
     public String getUnit() {
@@ -336,14 +211,6 @@ public class PmsProduct implements Serializable {
 
     public void setPreviewStatus(Integer previewStatus) {
         this.previewStatus = previewStatus;
-    }
-
-    public String getServiceIds() {
-        return serviceIds;
-    }
-
-    public void setServiceIds(String serviceIds) {
-        this.serviceIds = serviceIds;
     }
 
     public String getKeywords() {
@@ -376,38 +243,6 @@ public class PmsProduct implements Serializable {
 
     public void setDetailTitle(String detailTitle) {
         this.detailTitle = detailTitle;
-    }
-
-    public Date getPromotionStartTime() {
-        return promotionStartTime;
-    }
-
-    public void setPromotionStartTime(Date promotionStartTime) {
-        this.promotionStartTime = promotionStartTime;
-    }
-
-    public Date getPromotionEndTime() {
-        return promotionEndTime;
-    }
-
-    public void setPromotionEndTime(Date promotionEndTime) {
-        this.promotionEndTime = promotionEndTime;
-    }
-
-    public Integer getPromotionPerLimit() {
-        return promotionPerLimit;
-    }
-
-    public void setPromotionPerLimit(Integer promotionPerLimit) {
-        this.promotionPerLimit = promotionPerLimit;
-    }
-
-    public Integer getPromotionType() {
-        return promotionType;
-    }
-
-    public void setPromotionType(Integer promotionType) {
-        this.promotionType = promotionType;
     }
 
     public String getBrandName() {
@@ -467,39 +302,23 @@ public class PmsProduct implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", brandId=").append(brandId);
         sb.append(", productCategoryId=").append(productCategoryId);
-        sb.append(", feightTemplateId=").append(feightTemplateId);
         sb.append(", productAttributeCategoryId=").append(productAttributeCategoryId);
         sb.append(", name=").append(name);
         sb.append(", pic=").append(pic);
-        sb.append(", productSn=").append(productSn);
         sb.append(", deleteStatus=").append(deleteStatus);
         sb.append(", publishStatus=").append(publishStatus);
         sb.append(", newStatus=").append(newStatus);
         sb.append(", recommandStatus=").append(recommandStatus);
         sb.append(", verifyStatus=").append(verifyStatus);
-        sb.append(", sort=").append(sort);
-        sb.append(", sale=").append(sale);
         sb.append(", price=").append(price);
-        sb.append(", promotionPrice=").append(promotionPrice);
-        sb.append(", giftGrowth=").append(giftGrowth);
-        sb.append(", giftPoint=").append(giftPoint);
-        sb.append(", usePointLimit=").append(usePointLimit);
         sb.append(", subTitle=").append(subTitle);
-        sb.append(", originalPrice=").append(originalPrice);
-        sb.append(", stock=").append(stock);
-        sb.append(", lowStock=").append(lowStock);
         sb.append(", unit=").append(unit);
         sb.append(", weight=").append(weight);
         sb.append(", previewStatus=").append(previewStatus);
-        sb.append(", serviceIds=").append(serviceIds);
         sb.append(", keywords=").append(keywords);
         sb.append(", note=").append(note);
         sb.append(", albumPics=").append(albumPics);
         sb.append(", detailTitle=").append(detailTitle);
-        sb.append(", promotionStartTime=").append(promotionStartTime);
-        sb.append(", promotionEndTime=").append(promotionEndTime);
-        sb.append(", promotionPerLimit=").append(promotionPerLimit);
-        sb.append(", promotionType=").append(promotionType);
         sb.append(", brandName=").append(brandName);
         sb.append(", productCategoryName=").append(productCategoryName);
         sb.append(", description=").append(description);

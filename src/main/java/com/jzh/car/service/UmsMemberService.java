@@ -14,11 +14,6 @@ public interface UmsMemberService {
     UmsMember getByUsername(String username);
 
     /**
-     * 根据用户编号获取用户
-     */
-    UmsMember getById(Long id);
-
-    /**
      * 用户注册
      */
     @Transactional
@@ -39,12 +34,6 @@ public interface UmsMemberService {
      * 获取当前登录用户
      */
     UmsMember getCurrentMember();
-
-    /**
-     * 根据用户id修改用户积分
-     */
-    void updateIntegration(Long id,Integer integration);
-
 
     /**
      * 获取用户信息

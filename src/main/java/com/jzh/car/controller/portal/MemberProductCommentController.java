@@ -3,7 +3,6 @@ package com.jzh.car.controller.portal;
 import com.jzh.car.api.CommonPage;
 import com.jzh.car.api.CommonResult;
 import com.jzh.car.model.PmsComment;
-import com.jzh.car.model.PmsCommentReplay;
 import com.jzh.car.service.MemberCommentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,18 +30,6 @@ public class MemberProductCommentController {
     @ResponseBody
     public CommonResult add(@RequestBody PmsComment pmsComment) {
         int count = memberCommentService.create(pmsComment);
-        if (count > 0) {
-            return CommonResult.success(count);
-        } else {
-            return CommonResult.failed();
-        }
-    }
-
-    @ApiOperation("添加汽车评价回复")
-    @RequestMapping(value = "/replay", method = RequestMethod.POST)
-    @ResponseBody
-    public CommonResult replay(@RequestBody PmsCommentReplay commentReplay) {
-        int count = memberCommentService.replay(commentReplay);
         if (count > 0) {
             return CommonResult.success(count);
         } else {

@@ -4,7 +4,6 @@ import cn.hutool.core.util.ObjectUtil;
 import com.github.pagehelper.PageHelper;
 import com.jzh.car.exception.ApiException;
 import com.jzh.car.mapper.PmsCommentMapper;
-import com.jzh.car.mapper.PmsCommentReplayMapper;
 import com.jzh.car.mapper.PmsProductMapper;
 import com.jzh.car.model.*;
 import com.jzh.car.service.MemberCommentService;
@@ -22,8 +21,6 @@ import java.util.List;
 public class MemberCommentServiceImpl implements MemberCommentService {
     @Resource
     private PmsCommentMapper commentMapper;
-    @Resource
-    private PmsCommentReplayMapper commentReplayMapper;
     @Resource
     private UmsMemberService memberService;
     @Resource
@@ -76,10 +73,7 @@ public class MemberCommentServiceImpl implements MemberCommentService {
     public int deleteByIds(List<Long> ids) {
         PmsCommentExample commentExample = new PmsCommentExample();
         commentExample.createCriteria().andIdIn(ids);
-        commentMapper.deleteByExample(commentExample);
-        PmsCommentReplayExample commentReplayExample = new PmsCommentReplayExample();
-        commentReplayExample.createCriteria().andCommentIdIn(ids);
-        return commentReplayMapper.deleteByExample(commentReplayExample);
+        return commentMapper.deleteByExample(commentExample);
     }
 
     /**
@@ -89,33 +83,7 @@ public class MemberCommentServiceImpl implements MemberCommentService {
      */
     @Override
     public int deleteById(Long id) {
-        commentMapper.deleteByPrimaryKey(id);
-        PmsCommentReplayExample commentReplayExample = new PmsCommentReplayExample();
-        commentReplayExample.createCriteria().andCommentIdEqualTo(id);
-        return commentReplayMapper.deleteByExample(commentReplayExample);
-    }
-
-    /**
-     * 添加汽车评价回复
-     *
-     * @param commentReplay
-     */
-    @Override
-    public int replay(PmsCommentReplay commentReplay) {
-        int count;
-        UmsMember member = memberService.getCurrentMember();
-        PmsComment pmsComment = commentMapper.selectByPrimaryKey(commentReplay.getCommentId());
-        if (ObjectUtil.isNull(pmsComment)) {
-            throw new ApiException("评论不存在");
-        }
-        //创建评价
-        commentReplay.setMemberNickName(member.getNickname());
-        commentReplay.setMemberIcon(member.getIcon());
-        commentReplay.setCreateTime(new Date());
-        commentReplay.setType(0);
-        commentReplayMapper.insert(commentReplay);
-        count = 1;
-        return count;
+        return commentMapper.deleteByPrimaryKey(id);
     }
 
     /**

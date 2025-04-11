@@ -28,12 +28,13 @@ spring:
     timeout: 30s # 连接超时时间（毫秒）
   data:
     mongodb:
-      host: 118.31.53.69
-      port: 8717
-      database: admin
-      username: admin
-      password: '123456'
-      authenticationDatabase: admin
+      uri: mongodb://localhost:27017/admin?authSource=admin
+#      host: 127.0.0.1
+#      port: 27017
+#      database: admin
+#      username: admin
+#      password:
+#      authentication-database: admin
 
 minio:
   endpoint: http://118.31.53.69:9050 #MinIO服务所在地址

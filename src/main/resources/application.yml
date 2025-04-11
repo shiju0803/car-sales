@@ -64,3 +64,10 @@ secure:
       - /portal/sso/register
       - /portal/sso/getAuthCode
       - /portal/sso/updatePassword
+      - /portal/home/**
+      - /portal/product/**
+      - /portal/brand/**
+      - /portal/member/attention/detail
+      - /portal/member/productComment/list
+      - /portal/member/readHistory/list
+      - /portal/member/SearchHistory/list

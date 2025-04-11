@@ -1,7 +1,6 @@
 package com.jzh.car.service;
 
 import com.jzh.car.model.PmsComment;
-import com.jzh.car.model.PmsCommentReplay;
 
 import java.util.List;
 
@@ -28,11 +27,6 @@ public interface MemberCommentService {
      * 根据id删除评价
      */
     int deleteById(Long id);
-
-    /**
-     * 添加汽车评价回复
-     */
-    int replay(PmsCommentReplay commentReplay);
 
     /**
      * 评论点赞或取消
