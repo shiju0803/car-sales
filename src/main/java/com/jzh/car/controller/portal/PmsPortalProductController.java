@@ -54,6 +54,7 @@ public class PmsPortalProductController {
     @ApiOperation("获取前台汽车详情")
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
     @ResponseBody
+
     public CommonResult<PmsPortalProductDetail> detail(@PathVariable Long id) {
         PmsPortalProductDetail productDetail = portalProductService.detail(id);
         return CommonResult.success(productDetail);
